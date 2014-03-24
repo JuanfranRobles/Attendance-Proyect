@@ -1,0 +1,74 @@
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="15dp"
+    android:background="#ffffff">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/foto"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/caragollum" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/nombre"
+        android:layout_alignTop="@+id/foto"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="105dp"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/apellidos"
+        android:layout_below="@+id/nombre"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="105dp"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/nacimiento"
+        android:layout_alignBottom="@+id/foto"
+        android:layout_below="@+id/DNI"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="4dp"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/DNI"
+        android:layout_below="@+id/apellidos"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="105dp"
+        android:textSize="15dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Falta."
+        android:id="@+id/chkAsist"
+        android:checked="false"
+        android:layout_below="@+id/nombre"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="lanzarMarcado"
+        android:focusable="false" android:focusableInTouchMode="false" />
+</RelativeLayout>

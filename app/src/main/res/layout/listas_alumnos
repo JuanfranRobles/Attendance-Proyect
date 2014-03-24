@@ -1,0 +1,51 @@
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#000000">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="103dp"
+            android:background="#ffffff">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marcar Todo"
+                android:id="@+id/boton_marcar_todo"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="60dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guardar"
+                android:id="@+id/boton_guardar"
+                android:layout_alignTop="@+id/boton_marcar_todo"
+                android:layout_toRightOf="@+id/boton_marcar_todo"
+                android:layout_marginLeft="53dp" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:dividerHeight="10dp"
+            android:divider="@android:color/transparent"/>
+            <!-- android:id="@+id/lista_alumnos" -->
+
+    </LinearLayout>
+</RelativeLayout>

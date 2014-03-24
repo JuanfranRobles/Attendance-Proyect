@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="asistencia.app" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icono"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="asistencia.app.PantallaInicio"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="asistencia.app.ActividadPrincipal"
+            android:label="Asistencia" />
+        <activity
+            android:name="asistencia.app.AcercaDe"
+            android:label="Asistencia" />
+        <activity
+            android:name="asistencia.app.MenuAsignatura"
+            android:label="Asistencia" />
+        <activity
+            android:name="asistencia.app.ListaAlumnos"
+            android:label="Asistencia" />
+        <activity
+            android:name="asistencia.app.MarcadoAsistencia"
+            android:label="Asistencia" />
+        <activity
+            android:name="asistencia.app.ListaAsignaturas"
+            android:label="Asistencia" />
+
+    </application>
+
+</manifest>

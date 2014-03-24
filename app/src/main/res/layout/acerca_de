@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fillViewport="true"
+        android:measureAllChildren="true" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:text="¿Qué es Attendance?"
+                android:id="@+id/textView"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:background="#292524"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Atendance es una aplicación creada por alumnos de la Universidad de Granada como proyecto final de la asignatura Programación de dispositivos móviles."
+                android:id="@+id/textView2"
+                android:gravity="center"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="El objetivo de esta App es facilitar el control de asistencia a clases o eventos mediante reconocimiento facial de los asistentes."
+                android:id="@+id/textView3"
+                android:gravity="center"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Desarrollo e Implementación."
+                android:id="@+id/textView5"
+                android:gravity="center"
+                android:textStyle="bold|italic"
+                android:textSize="18dp"
+                android:background="#241c1e"
+                android:textColor="#fcf6ff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Para su desarrollo se ha usado Java y C++ nativo para la programación y la librería de manejo de imágenes digitales OpenCV en su variante para Android."
+                android:id="@+id/textView4"
+                android:gravity="center"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sobre nosotros."
+                android:id="@+id/textView6"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold|italic"
+                android:background="#2b2929"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ramón Rueda"
+                android:id="@+id/button" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Juan Francisco Robles"
+                android:id="@+id/button2" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="277dp"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/relativeLayout">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="189dp" >
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:id="@+id/imageView"
+                        android:src="@drawable/opencv_logo_with_text"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="189dp" >
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:id="@+id/imageView2"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/java" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

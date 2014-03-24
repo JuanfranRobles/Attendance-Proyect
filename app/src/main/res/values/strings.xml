@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Asistencia</string>
+    <string name="action_settings">Settings</string>
+    <string name="logo_description">Logo</string>
+    <string name="menu_cancel_post">Anular post</string>
+    <string name="button_mark_read">Marcar como leÃ­do</string>
+    <string name="menu_select_all">Seleccionar todos</string>
+    <string name="menu_unselect_all">Deseleccionar todos</string>
+    <string name="title_activity_post_list">Entradas</string>
+    <string name="title_activity_login">IdentifÃ­quese</string>
+    <string name="dialog_confirm_cancel_post">Â¿Deseas anular tu asistencia a este post?</string>
+    <string name="dialog_confirm_cancel_post_yes">SÃ­</string>
+    <string name="dialog_confirm_cancel_post_no">No</string>
+    <string name="login_nsocio">NÂº Socio:</string>
+    <string name="login_pin">Pin:</string>
+    <string name="login_button">Confirmar</string>
+    <string name="no_post_selected">No ha seleccionado ningÃºn artÃ­culo</string>
+    <string name="n_socio_hint">NÃºmero de socio</string>
+    <string name="imagen_content_description">Calendario</string>
+
+
+</resources>
