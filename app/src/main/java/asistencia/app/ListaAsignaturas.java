@@ -81,22 +81,8 @@ public class ListaAsignaturas extends Activity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
-        AdapterContextMenuInfo info =
-                (AdapterContextMenuInfo) item.getMenuInfo();
-
         switch (item.getItemId()) {
-            /*case R.id.CtxLstOpc1:
-                lblMensaje.setText("Etiqueta: Opcion 1 pulsada!");
-                return true;
-            case R.id.CtxLblOpc2:
-                lblMensaje.setText("Etiqueta: Opcion 2 pulsada!");
-                return true;
-            case R.id.CtxLstOpc1:
-                lblMensaje.setText("Lista[" + info.position + "]: Opcion 1 pulsada!");
-                return true;
-            case R.id.CtxLstOpc2:
-                lblMensaje.setText("Lista[" + info.position + "]: Opcion 2 pulsada!");
-                return true;*/
+
             default:
                 return super.onContextItemSelected(item);
         }

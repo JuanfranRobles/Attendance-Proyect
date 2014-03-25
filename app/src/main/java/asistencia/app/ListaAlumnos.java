@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -50,6 +54,8 @@ public class ListaAlumnos extends ListActivity {
             }
         });
 
+        registerForContextMenu(this.getListView());
+
     }
 
     @Override
@@ -57,6 +63,28 @@ public class ListaAlumnos extends ListActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.listas_alumnos, menu);
         return true;
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+
+        if (v.getId() == this.getListView().getId()) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            menu.setHeaderTitle(alumnos.get(info.position).getNombre());
+            inflater.inflate(R.menu.menu_contextual_alumnos, menu);
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     /**

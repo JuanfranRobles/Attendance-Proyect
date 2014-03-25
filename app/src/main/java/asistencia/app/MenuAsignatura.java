@@ -19,7 +19,7 @@ public class MenuAsignatura extends Activity{
 
     // Lanzar la pantalla de lista de alumnos.
     public void lanzarListaAlumnos(View view){
-        Intent i = new Intent(this, ListaAsignaturas.class);
+        Intent i = new Intent(this, ListaAlumnos.class);
         startActivity(i);
     }
 
