@@ -2,9 +2,11 @@ package asistencia.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,9 @@ import java.util.List;
 public class ListaAsignaturas extends Activity {
 
     private ListView listview;
+    private static final int MNU_OPC1 = 1;
+    private int opcionSeleccionada = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +115,37 @@ public class ListaAsignaturas extends Activity {
             return true;
         }
 
+    }
+
+    private void construirMenu(Menu menu)
+    {
+        menu.add(Menu.NONE, MNU_OPC1, Menu.NONE, "Añadir Asignatura")
+                .setIcon(android.R.drawable.ic_menu_preferences);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        construirMenu(menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MNU_OPC1:
+                aniadirAsignatura();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    // Lanzar la pantalla de lista de alumnos.
+    public void aniadirAsignatura(){
+        Intent i = new Intent(this, IntroAsignaturas.class);
+        startActivity(i);
     }
 }
 

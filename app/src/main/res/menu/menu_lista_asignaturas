@@ -1,0 +1,7 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/AniadirAsig" android:title="Añadir asignatura"
+        android:icon="@android:drawable/ic_input_add"></item>
+
+</menu>
