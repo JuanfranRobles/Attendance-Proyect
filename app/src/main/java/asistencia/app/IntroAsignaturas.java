@@ -1,14 +1,10 @@
 package asistencia.app;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -24,9 +20,6 @@ public class IntroAsignaturas extends Activity implements OnClickListener {
 
     private EditText txtNombre;
     private EditText txtCurso;
-    private Button btnGuardar;
-    private static final int READ_BLOCK_SIZE=100;
-    private boolean creado;
 
     /** Called when the activity is first created. */
     @Override
@@ -36,35 +29,43 @@ public class IntroAsignaturas extends Activity implements OnClickListener {
 
         txtNombre = (EditText)findViewById(R.id.editTextNombreAsig);
         txtCurso = (EditText)findViewById(R.id.editTextCursoAsig);
-        btnGuardar = (Button)findViewById(R.id.btnGuardarAsig);
+        Button btnGuardar = (Button) findViewById(R.id.btnGuardarAsig);
         btnGuardar.setOnClickListener(this);
-        creado = false;
 
     }
     /* Método para saber si sólo se puede leer en la SD. */
     public static boolean isExternalStorageReadOnly() {
+        boolean lectura_escritura = false;
         String extStorageState = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
-            return true;
+            lectura_escritura = true;
         }
-        return false;
+        else{
+            lectura_escritura = false;
+        }
+        return lectura_escritura;
     }
     /* Método para saber si tenemos montada una SD en el sistema. */
     public static boolean isExternalStorageAvailable() {
+        boolean sd_montada = false;
         String extStorageState = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(extStorageState)) {
-            return true;
+        if(Environment.MEDIA_MOUNTED.equals(extStorageState)){
+            sd_montada= true;
         }
-        return false;
+        else{
+            sd_montada = false;
+        }
+
+        return sd_montada;
     }
     @Override
     public void onClick(View arg0) {
 
-        File sdCard, directory, file = null;
+        File sdCard, directory, file;
 
         try {
-            // validamos si se encuentra montada nuestra memoria externa
-            if (isExternalStorageAvailable() && !isExternalStorageReadOnly()/*Environment.getExternalStorageState().equals("mounted")*/) {
+            // validamos si se encuentra montada nuestra memoria externa y se puede escribir en ella...
+            if (isExternalStorageAvailable() && !isExternalStorageReadOnly()) {
 
                 // Obtenemos el directorio de la memoria externa
                 sdCard = Environment.getExternalStorageDirectory();
@@ -73,7 +74,7 @@ public class IntroAsignaturas extends Activity implements OnClickListener {
                     String str_nombre = txtNombre.getText().toString();
                     String str_curso = txtCurso.getText().toString();
                     // Clase que permite grabar texto en un archivo
-                    FileOutputStream fout = null;
+                    FileOutputStream fout;
                     try {
                         // instanciamos un onjeto File para crear un nuevo
                         // directorio
@@ -87,16 +88,12 @@ public class IntroAsignaturas extends Activity implements OnClickListener {
                         // creamos el archivo en el nuevo directorio creado
                         file = new File(directory, "asignaturas.txt");
 
-                        fout = new FileOutputStream(file);
-/*openFileOutput()*/
+                        fout = new FileOutputStream(file,true);
                         // Convierte un stream de caracteres en un stream de
                         // bytes
-                        String ruta = sdCard.getAbsolutePath() + "/Asignaturas/" + file.getName();
-                        //Toast.makeText(getBaseContext(),ruta,Toast.LENGTH_LONG).show();
                         OutputStreamWriter ows = new OutputStreamWriter(fout/*openFileOutput(ruta, MODE_APPEND)*/);
-                        ows.write(str_nombre); // Escribe en el buffer la cadena de texto
-                        ows.write("\n");
-                        ows.write(str_curso);
+                        String cadena = str_nombre + "   ---   " + "Curso: " + str_curso + "º";
+                        ows.write(cadena); // Escribe en el buffer la cadena de texto
                         ows.write("\n");
                         ows.flush(); // Volca lo que hay en el buffer al archivo
                         ows.close(); // Cierra el archivo de texto

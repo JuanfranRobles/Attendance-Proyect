@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -11,9 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +32,6 @@ public class ListaAsignaturas extends Activity {
 
     private ListView listview;
     private static final int MNU_OPC1 = 1;
-    private int opcionSeleccionada = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +39,11 @@ public class ListaAsignaturas extends Activity {
         setContentView(R.layout.listview_asignaturas);
 
         listview = (ListView) findViewById(R.id.list_asignaturas);
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
 
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
-        }
+        ArrayList<String> list;
+
+        list = rellenarAdapterAsignaturas();
+
         final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
 
@@ -146,6 +146,69 @@ public class ListaAsignaturas extends Activity {
     public void aniadirAsignatura(){
         Intent i = new Intent(this, IntroAsignaturas.class);
         startActivity(i);
+    }
+
+    public ArrayList<String> rellenarAdapterAsignaturas(){
+
+        ArrayList<String> lista_asignaturas = new ArrayList<String>();
+
+        //Creación de datos.
+        File sdCard, directory, file;
+        if (Environment.getExternalStorageState().equals("mounted")) {
+
+            // Obtenemos el directorio de la memoria externa
+            sdCard = Environment.getExternalStorageDirectory();
+
+            try {
+
+                //Obtenemos el direcorio donde se encuentra nuestro archivo a leer
+                directory = new File(sdCard.getAbsolutePath() + "/Asignaturas/");
+
+                //Creamos un objeto File de nuestro archivo a leer
+                file = new File(directory, "asignaturas.txt");
+
+                //Creamos un objeto de la clase FileInputStream
+                //el cual representa un stream del archivo que vamos a leer
+                FileInputStream fin = new FileInputStream(file);
+
+                //Creaos un objeto InputStreamReader que nos permitira
+                //leer el stream del archivo abierto de la ruta del archivo que se quiere leer
+                InputStreamReader is = new InputStreamReader(fin);
+
+                //Creamos el BufferedReader para leer el archivo
+                BufferedReader leer = new BufferedReader(is);
+                //Variable en la que se guardará todo el texto leido en el archivo.
+                //StringBuilder textoFinal = new StringBuilder();
+                //Guarda la linea que lee leer.readLine()
+                String linea;
+
+                //Se encierra la lectura entre las sentencias try-catch por si hay algún error en el transcurso de la lectura.
+                try {
+                    //Mientra la linea sea distinto de null sigue leyendo
+                    while((linea = leer.readLine()) != null){
+
+                            lista_asignaturas.add(linea);
+
+                    }
+                    //lista_asignaturas.remove(lista_asignaturas.size()-1);
+                } catch (IOException e) {
+                    //En caso de error muestra lo sucedido.
+                    e.printStackTrace();
+                }
+
+                is.close();
+
+                Toast.makeText(getBaseContext(),
+                        "El archivo ha sido cargado",
+                        Toast.LENGTH_SHORT).show();
+
+            } catch (IOException e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+
+        }
+        return lista_asignaturas;
     }
 }
 
