@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -28,7 +29,7 @@ import java.util.List;
  * Created by Juan Francisco on 24/03/14.
  */
 
-public class ListaAsignaturas extends Activity {
+public class ListaAsignaturas extends Activity{
 
     private ListView listview;
     private static final int MNU_OPC1 = 1;
@@ -40,32 +41,34 @@ public class ListaAsignaturas extends Activity {
 
         listview = (ListView) findViewById(R.id.list_asignaturas);
 
-        ArrayList<String> list;
+        final ArrayList<String> list;
 
         list = rellenarAdapterAsignaturas();
 
         final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
 
-        /*listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        listview.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
+                String nombre_asignatura = list.get(position);
+                Intent i = new Intent(getApplicationContext(), ListaAlumnos.class);
+                i.putExtra("nombre_asig", nombre_asignatura);
+                startActivity(i);
+                // TODO Auto-generated method stub
+                Toast.makeText(getApplicationContext(), "Ha pulsado el item " + position, Toast.LENGTH_SHORT).show();
 
-//                view.animate().setDuration(20).alpha(0).withEndAction(new Runnable() {
-                    @Override
-                    public void run(){
-                        list.remove(item);
-                        adapter.notifyDataSetChanged();
-                        view.setAlpha(1);
-                    }
-                });
-
-            //}
-        });*/
+            }
+        });
+        /*Bundle extras = getIntent().getExtras();
+        if (extras!=null)
+        {
+            String identificador = extras.getString("identificador");
+        }*/
         registerForContextMenu(listview);
+
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -92,6 +95,7 @@ public class ListaAsignaturas extends Activity {
                 return super.onContextItemSelected(item);
         }
     }
+
     private class StableArrayAdapter extends ArrayAdapter<String> {
 
         HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
@@ -120,7 +124,7 @@ public class ListaAsignaturas extends Activity {
     private void construirMenu(Menu menu)
     {
         menu.add(Menu.NONE, MNU_OPC1, Menu.NONE, "Añadir Asignatura")
-                .setIcon(android.R.drawable.ic_menu_preferences);
+                .setIcon(android.R.drawable.ic_menu_add);
 
     }
 

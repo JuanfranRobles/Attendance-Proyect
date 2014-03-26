@@ -101,8 +101,7 @@ public class AdapterAlumnos extends ArrayAdapter<Alumno>{
         elem.DNI.setText(datos.get(position).getDNI());
         elem.birth_date.setText(obtenerCadenaDeFecha(datos.get(position).getFechaNacimiento()));
         elem.checker.setChecked(datos.get(position).getAsiste());
-        elem.icon.setImageResource(datos.get(position).getFoto());
-
+        elem.icon.setImageBitmap(datos.get(position).getFoto());
 
         elem.checker.setOnClickListener(new OnClickListener() {
             @Override

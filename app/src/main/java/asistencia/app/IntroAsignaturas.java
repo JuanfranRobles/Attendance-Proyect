@@ -91,8 +91,8 @@ public class IntroAsignaturas extends Activity implements OnClickListener {
                         fout = new FileOutputStream(file,true);
                         // Convierte un stream de caracteres en un stream de
                         // bytes
-                        OutputStreamWriter ows = new OutputStreamWriter(fout/*openFileOutput(ruta, MODE_APPEND)*/);
-                        String cadena = str_nombre + "   ---   " + "Curso: " + str_curso + "º";
+                        OutputStreamWriter ows = new OutputStreamWriter(fout);
+                        String cadena = str_nombre;/* + "   ---   " + "Curso: " + str_curso + "º";*/
                         ows.write(cadena); // Escribe en el buffer la cadena de texto
                         ows.write("\n");
                         ows.flush(); // Volca lo que hay en el buffer al archivo
