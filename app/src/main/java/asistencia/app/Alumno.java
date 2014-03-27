@@ -205,9 +205,9 @@ public class Alumno{
     }
     /* Añadir un método que calcule el porcentaje de clases a las que ha asistido el alumno al final del curso. */
     public Calendar convertDateString(String fecha){
-        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         java.util.Date date;
-        Calendar calendar = new GregorianCalendar();
+        Calendar calendar = Calendar.getInstance();
 
         try{
             date = sdf.parse(fecha);

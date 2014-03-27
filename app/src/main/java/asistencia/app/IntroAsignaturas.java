@@ -92,10 +92,10 @@ public class IntroAsignaturas extends Activity implements OnClickListener {
                         // Convierte un stream de caracteres en un stream de
                         // bytes
                         OutputStreamWriter ows = new OutputStreamWriter(fout);
-                        String cadena = str_nombre;/* + "   ---   " + "Curso: " + str_curso + "º";*/
+                        String cadena = str_nombre;
                         ows.write(cadena); // Escribe en el buffer la cadena de texto
                         ows.write("\n");
-                        ows.flush(); // Volca lo que hay en el buffer al archivo
+                        ows.flush(); // Vuelca lo que hay en el buffer dentro del archivo
                         ows.close(); // Cierra el archivo de texto
 
                         Toast.makeText(getBaseContext(),
