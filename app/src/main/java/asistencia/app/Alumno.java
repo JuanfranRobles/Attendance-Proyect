@@ -5,19 +5,10 @@ package asistencia.app;
  */
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.text.ParseException;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.widget.ImageView;
-
-import java.util.Collections;
 
 /**
  *
@@ -60,59 +51,15 @@ public class Alumno{
         this.asistencias = null;
 
     }
-    /*public Alumno(String nombre_al, String apellidos_al, String DNI_al, String nacimiento_al, long id_al){
-        super();
-        // Para asignarle una fotografía con su DNI.
-        String ruta = "/imagenes/" + DNI_al + ".jpg";
-        Drawable auxiliar = Drawable.createFromPath(ruta);
-        this.id = id_al;
-        this.foto = auxiliar;
-        this.nombre = nombre_al;
-        this.apellidos = apellidos_al;
-        this.DNI = DNI_al;
-        Calendar aux = convertDateString(nacimiento_al);
-        this.fecha_nacimiento = aux;
-        //ruta_imagen = "/imagenes/" + DNI + ".jpg";
-        this.num_asistencias = 0;
-        this.num_faltas = 0;
-        this.asiste = false;
-        this.asistencias = null;
-
-    }*/
-    /*public Alumno(String nombre_al, String apellidos_al, String DNI_al, String nacimiento_al){
-        super();
-        // Para asignarle una fotografía con su DNI.
-        String ruta = "/imagenes/" + DNI_al + ".jpg";
-        Drawable auxiliar = Drawable.createFromPath(ruta);
-        this.foto = auxiliar;
-        this.nombre = nombre_al;
-        this.apellidos = apellidos_al;
-        this.DNI = DNI_al;
-        Calendar aux = convertDateString(nacimiento_al);
-        this.fecha_nacimiento = aux;
-        //ruta_imagen = "/imagenes/" + DNI + ".jpg";
-        this.num_asistencias = 0;
-        this.num_faltas = 0;
-        this.asiste = false;
-        this.asistencias = null;
-
-
-    }*/
     // Con foto
     public Alumno(String nombre_al, String apellidos_al, String DNI_al, String nacimiento_al, long id_al){
         super();
-        // Para asignarle una fotografía con su DNI.
-        //String ruta = "/imagenes/" + DNI_al + ".jpg";
-        //Drawable auxiliar = Drawable.createFromPath(ruta);
-        //id_foto = android.R.drawable.ic_menu_my_calendar
         this.id = id_al;
-        //this.foto.setImageResource(id_foto);
         this.nombre = nombre_al;
         this.apellidos = apellidos_al;
         this.DNI = DNI_al;
         Calendar aux = convertDateString(nacimiento_al);
         this.fecha_nacimiento = aux;
-        //ruta_imagen = "/imagenes/" + DNI + ".jpg";
         this.num_asistencias = 0;
         this.num_faltas = 0;
         this.asiste = false;
@@ -122,11 +69,6 @@ public class Alumno{
 
     public Alumno(String nombre_al, String apellidos_al, String DNI_al, String nacimiento_al){
         super();
-        // Para asignarle una fotografía con su DNI.
-        //String ruta = "/imagenes/" + DNI_al + ".jpg";
-        //Drawable auxiliar = Drawable.createFromPath(ruta);
-        //this.id_foto = id_foto_al;
-        //this.foto.setImageResource(android.R.drawable.ic_menu_my_calendar);
         this.nombre = nombre_al;
         this.apellidos = apellidos_al;
         this.DNI = DNI_al;
@@ -138,24 +80,7 @@ public class Alumno{
         this.asistencias = null;
 
     }
-    /* Alumno sin foto. Para poder cargarlo desde fichero y después asignarle su fotografía. */
-    /*public Alumno(String nombre_al, String apellidos_al, String DNI_al, String nacimiento_al){
-        super();
-        // Para asignarle una fotografía con su DNI.
-        //String ruta = "/imagenes/" + DNI_al + ".jpg";
-        //Drawable auxiliar = Drawable.createFromPath(ruta);
-        this.id_foto = 0;
-        this.nombre = nombre_al;
-        this.apellidos = apellidos_al;
-        this.DNI = DNI_al;
-        Calendar aux = convertDateString(nacimiento_al);
-        this.fecha_nacimiento = aux;
-        this.num_asistencias = 0;
-        this.num_faltas = 0;
-        this.asiste = false;
-        this.asistencias = null;
 
-    }*/
     /* --------------------- Fin constructores --------------------- */
     /* Bloque de métodos get: Consulta de valores de los objetos de la clase alumno. */
     // Consultar nombre del alumno.

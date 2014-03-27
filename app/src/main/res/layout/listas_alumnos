@@ -21,21 +21,23 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Marcar Todo"
-                android:id="@+id/boton_marcar_todo"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="60dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Guardar"
                 android:id="@+id/boton_guardar"
-                android:layout_alignTop="@+id/boton_marcar_todo"
-                android:layout_toRightOf="@+id/boton_marcar_todo"
-                android:layout_marginLeft="53dp" />
+                android:layout_marginRight="55dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marcar Todo"
+                android:id="@+id/chkMarcarTodo"
+                android:checked="false"
+                android:layout_alignBottom="@+id/boton_guardar"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/boton_guardar" />
         </RelativeLayout>
 
         <ListView

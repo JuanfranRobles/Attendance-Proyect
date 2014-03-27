@@ -19,6 +19,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,10 +33,14 @@ public class ListaAlumnos extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.listas_alumnos);
 
         // Inicializamos las variables.
         alumnos = new ArrayList<Alumno>();
+
+        // Dado que necesitamos saber de qué fichero leer los alumnos, tendremos que decodificar
+        // el dato obtenido al pulsar sobre el ListView de la clase ListaAsignaturas.java
         Bundle extras = getIntent().getExtras();
         if (extras!=null)
         {
@@ -41,6 +48,8 @@ public class ListaAlumnos extends ListActivity {
             Toast.makeText(getBaseContext(), nombre_asignatura, Toast.LENGTH_SHORT).show();
 
         }
+        //Llamar a la función rellenarArrayList() para añadir al ListView todos los alumnos definidos en el
+        //archivo --- Nombre de la asignatura pulsada --- + --- .txt ---.
         alumnos = this.rellenarArrayList();
 
         // Creamos el Adaptador que se usa para mostrar las opciones del listado
@@ -50,24 +59,57 @@ public class ListaAlumnos extends ListActivity {
 
         //Definimos el Click del Botón.
 
-        final Button btnboton1 = (Button)findViewById(R.id.boton_marcar_todo);
+        //final Button btnboton1 = (Button)findViewById(R.id.boton_marcar_todo);
 
-        btnboton1.setOnClickListener(new View.OnClickListener() {
-
-
+        final CheckBox chkAll = (CheckBox)findViewById(R.id.chkMarcarTodo);
+        chkAll.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-
-                for (int i=0; i<=alumnos.size(); i++){
-                    if (alumnos.get(i).getAsiste()){
-                        Toast.makeText(getBaseContext(), "Has hecho clic en la '"+ alumnos.get(i).getNombre()+"'", Toast.LENGTH_SHORT).show();
-
+            public void onClick(View view) {
+                // Primero marcamos el checkbox principal.
+                boolean selec;
+                if(chkAll.isChecked()){
+                    selec = true;
+                }
+                else{
+                    selec = false;
+                }
+                chkAll.setChecked(selec);
+                // Ahora se marcan todos los CheckBox siguiendo las siguientes pautas:
+                // -> Si se marca el CheckBox principal: -- Se marcan aquellos CheckBox que estén desmarcados.
+                // -> Si se desmarca el CheckBox pricipal: -- Se desmarcan aquellos CheckBox que estén marcados.
+                CheckBox cb;
+                ListView mainListView = getListView();
+                // Para cada elemento de la lista.
+                for (int x = 0; x<mainListView.getChildCount();x++){
+                    cb = (CheckBox)mainListView.getChildAt(x).findViewById(R.id.chkAsist);
+                    // Si se ha pulsado "Marcar todo" entonces se marcan los que no estén marcados.
+                    if(chkAll.isChecked()){
+                        if(!cb.isChecked()){
+                            cb.setChecked(true);
+                        }
+                    }
+                    // Por otro lado, si se pulsa "Desmarcar todo", se desmarcan aquellos que estén marcados.
+                    else{
+                        if(!chkAll.isChecked()){
+                            if(cb.isChecked()){
+                                cb.setChecked(false);
+                            }
+                        }
                     }
                 }
-
             }
         });
-
+        chkAll.setOnCheckedChangeListener(
+                new CheckBox.OnCheckedChangeListener() {
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked) {
+                        if (isChecked) {
+                            chkAll.setText("Desmarcar todo.");
+                        } else {
+                            chkAll.setText("Marcar todos");
+                        }
+                    }
+                });
         registerForContextMenu(this.getListView());
 
     }
