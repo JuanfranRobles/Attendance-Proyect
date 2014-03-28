@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -29,7 +29,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.view.View.OnClickListener;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -49,6 +48,7 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
 
         // Inicializamos las variables.
         alumnos = new ArrayList<Alumno>();
+        nombre_sesion = "";
 
         // Dado que necesitamos saber de qué fichero leer los alumnos, tendremos que decodificar
         // el dato obtenido al pulsar sobre el ListView de la clase ListaAsignaturas.java
@@ -178,8 +178,8 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
                         public void onClick(DialogInterface dialog, int id) {
                             // Rescatamos el nombre del EditText y lo mostramos por pantalla
 
-                            nombre_sesion = nombre_ses.getText().toString();
-                            //nombre_sesion = String.valueOf(aux.getText().toString());
+                                nombre_sesion = nombre_ses.getText().toString();
+
                         }
                     }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
@@ -189,10 +189,11 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
 
             });
 
+            // Añadir If para continuar o parar a que se rellene el nombre.
+            // O tener dos hilos _________-----------_________
             // Creamos un AlertDialog y lo mostramos
             AlertDialog alert = alertDialogBuilder.create();
             alert.show();
-
 
             // Una ver realizado esto, tendremos que guardar una lista con los alumnos y su asistencia.
             // El formato será el siguiente:
@@ -203,9 +204,9 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
             // Si asiste o no marcado con V o X.
 
             // Creamos la fecha de la sesión
-            Calendar fecha_sesion = Calendar.getInstance();
-            String fecha = fecha_sesion.getTime().toString() + " -- " + Integer.toString(fecha_sesion.DAY_OF_MONTH) + "/" +
-                Integer.toString(fecha_sesion.MONTH) + "/" + Integer.toString(fecha_sesion.YEAR) + ".";
+            Calendar fecha_sesion = new GregorianCalendar();
+            String fecha = /*fecha_sesion.getTime().toString() + " -- " + */fecha_sesion.get(Calendar.DAY_OF_MONTH) + "-" +
+                fecha_sesion.get(Calendar.MONTH) + "-" + fecha_sesion.get(Calendar.YEAR);
             // Pasamos a escribir en un nuevo fichero con el nombre de la NombreSesión-Fecha
             File sdCard, directory_padre, directory_hijo, file;
 
@@ -232,8 +233,11 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
                         directory_hijo = new File(directory_padre.getAbsolutePath()
                                 + "/" + nombre_asignatura);
                         directory_hijo.mkdirs();
+
                         // creamos el archivo en el nuevo directorio creado
-                        file = new File(directory_hijo, nombre_sesion + "-" + fecha + ".txt");
+                        String nuevo_archivo = nombre_sesion + "_" + fecha + ".txt";
+
+                        file = new File(directory_hijo, nuevo_archivo);
 
                         // Es necesario definir a true el segundo campo de FileOutputStream para que no sobreescriba.
                         fout = new FileOutputStream(file,true);
@@ -248,7 +252,7 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
                         // Y un stream para definir cómo escribir.
                         String cadena;
                         // Para cada elemento de la lista.
-                        for (int x = 0; x<mainListView.getChildCount();x++){
+                        for (int x = 0; x<mainListView.getChildCount(); x++){
                             cb = (CheckBox)mainListView.getChildAt(x).findViewById(R.id.chkAsist);
                             // Si está marcado el CheckBox escribimos Apellidos - DNI - V
                             if(cb.isChecked()){
