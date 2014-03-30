@@ -7,15 +7,16 @@ import android.view.View;
 import android.app.Activity;
 import android.content.Intent;
 
+/*
+* Clase ActividadPricipal.
+* -> Menú principal de la aplicación. Visualización de las opciones básicas. */
 public class ActividadPrincipal extends Activity {
 
-    private Button boton_acerca;
-
+    // Actividad principal.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_principal);
-
     }
 
     @Override
