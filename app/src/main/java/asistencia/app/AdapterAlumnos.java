@@ -7,6 +7,7 @@ package asistencia.app;
 import java.util.ArrayList;
 import java.util.Calendar;
 import android.app.Activity;
+import android.content.Context;
 import android.view.View.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ public class AdapterAlumnos extends ArrayAdapter<Alumno>{
 
     Activity context;
     private ArrayList<Alumno> datos;
+    private ArrayList<Boolean> marcados = new ArrayList<Boolean>();
 
     /**
      * Constructor del Adapter.
@@ -35,6 +38,9 @@ public class AdapterAlumnos extends ArrayAdapter<Alumno>{
         // Guardamos los parámetros en variables de clase.
         this.context = context;
         this.datos = datos;
+        for(int i =0; i < this.getCount(); i++){
+            marcados.add(i,false);
+        }
     }
     /* Tamaño de la lista de alumnos. */
     @Override
@@ -53,7 +59,8 @@ public class AdapterAlumnos extends ArrayAdapter<Alumno>{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
         // En primer lugar "inflamos" una nueva vista, que será la que se
         // mostrará en la celda del ListView.
         //View item = LayoutInflater.from(context).inflate(R.layout.item_lista_alumnos, null);
@@ -68,14 +75,7 @@ public class AdapterAlumnos extends ArrayAdapter<Alumno>{
             // Definimos en la vista de vuelta el tipo de diseño
             item = inflater.inflate(R.layout.item_lista_alumnos, null);
 
-            /*item.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    // TODO Auto-generated method stub
-
-                }
-            });*/
 
             // Definimos el objeto que vamos a almacenar en el nuevo elemento
             elem = new Element();
@@ -106,19 +106,24 @@ public class AdapterAlumnos extends ArrayAdapter<Alumno>{
         elem.checker.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean selec = false;
+                //boolean selec = false;
                 if(elem.checker.isChecked()){
-                    selec = true;
+                    marcados.set(position, true);
+                    //selec = true;
                 }
                 else{
-                    selec = false;
+                    marcados.set(position, false);
+                    //selec = false;
                 }
-                    elem.checker.setChecked(selec);
+
+                //elem.checker.setChecked(selec);
+                //notifyDataSetChanged();
 
 
-// haz ahora lo que quieras para guardar el valor ...
             }
         });
+        elem.checker.setChecked(marcados.get(position));
+        // Cambiar el texto de los CheckBox.
         elem.checker.setOnCheckedChangeListener(
                 new CheckBox.OnCheckedChangeListener() {
                     public void onCheckedChanged(CompoundButton buttonView,
@@ -137,8 +142,15 @@ public class AdapterAlumnos extends ArrayAdapter<Alumno>{
 
     }
 
+
     public String obtenerCadenaDeFecha(Calendar fecha){
         return (fecha.get(Calendar.DAY_OF_MONTH) + "/" + fecha.get(Calendar.MONTH) + "/" + fecha.get(Calendar.YEAR));
+    }
+
+    @Override
+    public void notifyDataSetChanged()
+    {
+        super.notifyDataSetChanged();
     }
 
 }

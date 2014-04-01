@@ -37,6 +37,7 @@ import android.widget.Toast;
 public class ListaAlumnos extends ListActivity implements OnClickListener{
 
     private ArrayList<Alumno> alumnos;
+    //private ArrayList<Boolean> marcados = new ArrayList<Boolean>();
     private String nombre_asignatura;
     private String nombre_sesion;
 
@@ -68,8 +69,46 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
         // Asignamos el adaptador al ListActivity para que sepa cómo dibujar el listado de opciones
         setListAdapter(adaptador);
 
-        //Definimos el Click del Botón.
+        /*for(int i = 0; i < alumnos.size(); i++){
+            marcados.add(i, false);
+        }*/
 
+        // DIALOG Principal para guardar el nombre de nuestra sesión.
+        //Se abre la vista actual.
+        LayoutInflater li = LayoutInflater.from(this);
+        // Establecemos el prompt en la vista actual.
+        View prompt = li.inflate(R.layout.prompt_guardar, null);
+        // Construimos un nuevo menú de alerta.
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        // Le asignamos la vista que le hemos dado.
+        alertDialogBuilder.setView(prompt);
+        // Creamos un EditText para leer lo que se escriba.
+
+        final EditText nombre_ses = (EditText) prompt.findViewById(R.id.nombre_sesion);
+        // Mostramos el mensaje del cuadro de dialogo
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Rescatamos el nombre del EditText y lo mostramos por pantalla
+                        nombre_sesion = nombre_ses.getText().toString();
+                        dialog.cancel();
+
+                    }
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Cancelamos el cuadro de dialogo
+                dialog.cancel();
+            }
+
+        });
+        // Añadir If para continuar o parar a que se rellene el nombre.
+        // O tener dos hilos _________-----------_________
+        // Creamos un AlertDialog y lo mostramos
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+
+        //Definimos el Click del Botón.
+        // Marcado de todos los checkbox con Marcar Todo.
         final CheckBox chkAll = (CheckBox)findViewById(R.id.chkMarcarTodo);
         chkAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,19 +134,30 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
                     if(chkAll.isChecked()){
                         if(!cb.isChecked()){
                             cb.setChecked(true);
+                            //marcados.set(x, true);
                         }
                     }
                     // Por otro lado, si se pulsa "Desmarcar todo", se desmarcan aquellos que estén marcados.
                     else{
                         if(!chkAll.isChecked()){
                             if(cb.isChecked()){
-                                cb.setChecked(false);
+                               cb.setChecked(false);
+                               // marcados.set(x, false);
                             }
                         }
                     }
                 }
             }
         });
+
+
+        /*ListView aListView = getListView();
+        CheckBox aux;
+        for(int i = 0; i < marcados.size(); i++){
+            aux = (CheckBox)aListView.getChildAt(i).findViewById(R.id.chkAsist);
+            aux.setChecked(marcados.get(i));
+        }*/
+        // Cambio de texto al pulsar el botón Marcar Todo // Desmarcar Todo.
         chkAll.setOnCheckedChangeListener(
                 new CheckBox.OnCheckedChangeListener() {
                     public void onCheckedChanged(CompoundButton buttonView,
@@ -159,41 +209,11 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
     // Lanzar un promt o ventana emergente para dar un nombre al archivo en el que se guardan las asistencias.
     @Override
     public void onClick(View v) {
+
         // Comprobamos si se ha pulsado el botón para guardar la asistencia de los alumnos.
         if(v.getId()==findViewById(R.id.boton_guardar).getId()){
-            //Se abre la vista actual.
-            LayoutInflater li = LayoutInflater.from(this);
-            // Establecemos el prompt en la vista actual.
-            View prompt = li.inflate(R.layout.prompt_guardar, null);
-            // Construimos un nuevo menú de alerta.
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            // Le asignamos la vista que le hemos dado.
-            alertDialogBuilder.setView(prompt);
-            // Creamos un EditText para leer lo que se escriba.
 
-            final EditText nombre_ses = (EditText) prompt.findViewById(R.id.nombre_sesion);
-            // Mostramos el mensaje del cuadro de dialogo
-            alertDialogBuilder.setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // Rescatamos el nombre del EditText y lo mostramos por pantalla
 
-                                nombre_sesion = nombre_ses.getText().toString();
-
-                        }
-                    }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // Cancelamos el cuadro de dialogo
-                    dialog.cancel();
-                }
-
-            });
-
-            // Añadir If para continuar o parar a que se rellene el nombre.
-            // O tener dos hilos _________-----------_________
-            // Creamos un AlertDialog y lo mostramos
-            AlertDialog alert = alertDialogBuilder.create();
-            alert.show();
 
             // Una ver realizado esto, tendremos que guardar una lista con los alumnos y su asistencia.
             // El formato será el siguiente:
@@ -284,7 +304,7 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
 
                 }else{
                     Toast.makeText(getBaseContext(),
-                            "El almacenamineto externio no se encuentra disponible",
+                            "El almacenamineto externo no se encuentra disponible",
                             Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
@@ -295,6 +315,7 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
             }
 
         }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
