@@ -172,7 +172,7 @@ public class Alumno{
         this.fecha_nacimiento = aux;
     }
     public void  setFoto(Bitmap image){
-        /*if(image != null){
+      /*  if(image != null){
             this.foto.setImageBitmap(image);
         }
         else{

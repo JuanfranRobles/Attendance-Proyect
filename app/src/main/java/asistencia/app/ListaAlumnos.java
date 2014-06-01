@@ -369,7 +369,7 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
 
                 //Creamos un objeto File de nuestro archivo a leer
                 file = new File(directory, nombre_asignatura + ".txt");
-
+                Toast.makeText(getApplicationContext(),"Estoy en el fichero:"+nombre_asignatura,Toast.LENGTH_LONG).show();
                 //Creamos un objeto de la clase FileInputStream
                 //el cual representa un stream del archivo que vamos a leer
                 FileInputStream fin = new FileInputStream(file);
@@ -434,13 +434,16 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
 
             // Cuando se hayan rellenado todos los alumnos pasamos a asignales sus imagenes.
             for(int i = 0; i < lista_alumnos.size(); i++){
-                File cara = new File(carpeta, lista_alumnos.get(i).getDNI() +".png");
+                File cara = new File(carpeta, lista_alumnos.get(i).getDNI() +".jpg");
+                Toast.makeText(getApplicationContext(),"la imagen coincide con el dni:"+lista_alumnos.get(i).getDNI(),Toast.LENGTH_LONG).show();
                 // Comprobar que existe la imagen.
                 if (cara.exists()){
                     //Tenemos la foto guardada en la SD, asi que la cargamos
                     //En necesario añadir "/" para completar la ruta a la carpeta ya que getAbsolutePath devuelve la ruta sin /.
-                    Bitmap image = BitmapFactory.decodeFile(carpeta.getAbsolutePath() + "/" + lista_alumnos.get(i).getDNI() + ".png");
-                    lista_alumnos.get(i).setFoto(image);
+                    Bitmap image = BitmapFactory.decodeFile(carpeta.getAbsolutePath() + "/" + lista_alumnos.get(i).getDNI() + ".jpg");
+                    Bitmap resized = Bitmap.createScaledBitmap(image,(int)(image.getWidth()*0.3), (int)(image.getHeight()*0.3),true);
+                    Toast.makeText(getApplicationContext(),carpeta.getAbsolutePath() + "/" + lista_alumnos.get(i).getDNI(),Toast.LENGTH_LONG).show();
+                    lista_alumnos.get(i).setFoto(resized);
                 }
             }
 

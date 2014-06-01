@@ -30,7 +30,7 @@ public class capturaImagen extends Activity {
         dni=(EditText) findViewById(R.id.editText2DNI);
         String DNI = dni.getText().toString();
         Intent i = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
-        File file = new File(Environment.getExternalStorageDirectory()+"/Imagenes/",DNI+".png");
+        File file = new File(Environment.getExternalStorageDirectory()+"/Imagenes/",DNI+".jpg");
         outputFileUri = Uri.fromFile(file);
         i.putExtra(MediaStore.EXTRA_OUTPUT,outputFileUri);
         startActivityForResult(i,TAKE_PICTURE);
