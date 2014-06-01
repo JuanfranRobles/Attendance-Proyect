@@ -35,7 +35,8 @@
                 android:minWidth="120dp"
                 android:background="#ffffff"
                 android:scaleType="fitCenter"
-                android:onClick="lanzarListaAlumnos" />
+                android:onClick="creaAsignatura"
+                 />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,7 +63,8 @@
                 android:src="@drawable/verasg"
                 android:adjustViewBounds="false"
                 android:scaleType="fitCenter"
-                android:background="#ffffff" />
+                android:background="#ffffff"
+                android:onClick="lanzarListaAlumnos"/>
 
             <TextView
                 android:layout_width="wrap_content"

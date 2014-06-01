@@ -8,39 +8,39 @@
         android:layout_height="wrap_content"
         android:text="Nombre:"
         android:id="@+id/textView"
+        android:layout_marginTop="32dp"
+        android:textSize="18dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="53dp"
-        android:textSize="18dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DNI:"
         android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
+        android:textSize="18dp"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="56dp"
-        android:textSize="18dp" />
+        android:layout_marginTop="51dp" />
 
     <EditText
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_above="@+id/textView2"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_marginLeft="56dp" />
+        android:id="@+id/editTextnom"
+        android:layout_above="@+id/editText2ape"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Capturar"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText"
-        android:onClick="hacerFoto" />
+        android:onClick="hacerFoto"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/editText4asig"
+        android:layout_alignStart="@+id/editText4asig" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -49,6 +49,67 @@
         android:ems="10"
         android:id="@+id/editText2DNI"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2ape"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignRight="@+id/editTextnom"
+        android:layout_alignEnd="@+id/editTextnom"
+        android:layout_alignLeft="@+id/editTextnom"
+        android:layout_alignStart="@+id/editTextnom" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apellidos"
+        android:id="@+id/textView3"
+        android:layout_alignBottom="@+id/editText2ape"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha:"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editText2DNI"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="62dp"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Asignatura:"
+        android:id="@+id/textView5"
+        android:textSize="18dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4asig"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignRight="@+id/editText2DNI"
+        android:layout_alignEnd="@+id/editText2DNI"
+        android:layout_alignLeft="@+id/editText2ape"
+        android:layout_alignStart="@+id/editText2ape" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText3fech"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toRightOf="@+id/textView5" />
 </RelativeLayout>

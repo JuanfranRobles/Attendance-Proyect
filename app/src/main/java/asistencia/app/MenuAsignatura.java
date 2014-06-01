@@ -23,4 +23,10 @@ public class MenuAsignatura extends Activity{
         startActivity(i);
     }
 
+    public void creaAsignatura(View view)
+    {
+        Intent i = new Intent (this,IntroAsignaturas.class);
+        startActivity(i);
+    }
+
 }
