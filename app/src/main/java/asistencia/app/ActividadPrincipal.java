@@ -42,4 +42,10 @@ public class ActividadPrincipal extends Activity {
         Intent i = new Intent(Intent.ACTION_MAIN);
         finish();
     }
+
+    public void fotografiar(View view)
+    {
+        Intent i = new Intent(this,capturaImagen.class);
+        startActivity(i);
+    }
 }

@@ -39,7 +39,8 @@
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/camara"
                         android:scaleType="fitCenter"
-                        android:background="#ffffff" />
+                        android:background="#ffffff"
+                        android:onClick="fotografiar" />
 
                     <TextView
                         android:layout_width="wrap_content"
