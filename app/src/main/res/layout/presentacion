@@ -1,0 +1,27 @@
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:text="Bienvenido a la aplicación Attendance-Proyect, la aplicación que le ayudará a mantener controladas las asistencias de sus eventos. Su uso es bastante sencillo, en primer lugar debe crear la asignatura o evento que desea controlar         con el botón Asignaturas. Una vez dentro, clica en Añadir asignatura y le da un nombre         a la asignatura a la que pertenece. Una vez hecho esto, vuelve atrás hasta la pantalla principal,         y a través del boton Reconocimiento, puede ir dando de alta a los usuarios, uno a uno.         Por último, una vez que ha dado de alta a los usuarios, puede pasar lista pulsando el botón         Asignaturas, Ver Asignaturas. Aquí podrá registrar los usuarios que han asistido en una           fecha determinada.          Si está listo para usar la aplicación, pulse Comenzar."
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="55dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comenzar"
+        android:id="@+id/button"
+        android:onClick="lanzarPrincipal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="86dp" />
+</RelativeLayout>
