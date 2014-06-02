@@ -1,14 +1,9 @@
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffffff">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" >
 
         <LinearLayout
             android:orientation="vertical"
@@ -37,18 +32,11 @@
                         android:id="@+id/imageButton4"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/camara"
+                        android:src="@drawable/nuevousuario"
                         android:scaleType="fitCenter"
                         android:background="#ffffff"
                         android:onClick="fotografiar" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reconocimiento"
-                        android:id="@+id/textView2"
-                        android:layout_below="@+id/imageButton4"
-                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -65,18 +53,11 @@
                         android:id="@+id/imageButton3"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/asignaturas"
+                        android:src="@drawable/icono_eventos"
                         android:onClick="lanzarMenuAsignaturas"
                         android:background="#ffffff"
                         android:scaleType="fitCenter" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Asignaturas"
-                        android:id="@+id/textView"
-                        android:layout_below="@+id/imageButton3"
-                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -101,20 +82,13 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:id="@+id/imageButton2"
-                        android:src="@drawable/salir"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:onClick="cerrar"
                         android:background="#ffffff"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/salir" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Salir"
-                        android:id="@+id/textView4"
-                        android:layout_below="@+id/imageButton2"
-                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -136,16 +110,9 @@
                         android:background="#ffffff"
                         android:scaleType="fitCenter" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Acerca de"
-                        android:id="@+id/textView3"
-                        android:layout_below="@+id/imageButton"
-                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
             </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+
 
 </RelativeLayout>

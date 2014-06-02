@@ -24,28 +24,28 @@
         </activity>
         <activity
             android:name="asistencia.app.ActividadPrincipal"
-            android:label="Asistencia" />
+            android:label="Control asistencias" />
         <activity
             android:name="asistencia.app.AcercaDe"
-            android:label="Asistencia" />
+            android:label="Acerca de" />
         <activity
             android:name="asistencia.app.MenuAsignatura"
-            android:label="Asistencia" />
+            android:label="Menú eventos" />
         <activity
             android:name="asistencia.app.ListaAlumnos"
-            android:label="Asistencia" />
+            android:label="Asistentes" />
         <activity
             android:name="asistencia.app.MarcadoAsistencia"
-            android:label="Asistencia" />
+            android:label="Sesión" />
         <activity
             android:name="asistencia.app.ListaAsignaturas"
-            android:label="Asistencia" />
+            android:label="Ver eventos" />
         <activity
             android:name="asistencia.app.IntroAsignaturas"
-            android:label="Asistencia" />
+            android:label="Nuevo evento" />
         <activity
             android:name="asistencia.app.capturaImagen"
-            android:label="Asistencia" />
+            android:label="Dar de alta" />
 
     </application>
 

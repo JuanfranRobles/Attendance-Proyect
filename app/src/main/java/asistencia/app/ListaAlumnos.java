@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -53,13 +54,13 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
 
         // Dado que necesitamos saber de qué fichero leer los alumnos, tendremos que decodificar
         // el dato obtenido al pulsar sobre el ListView de la clase ListaAsignaturas.java
-        Bundle extras = getIntent().getExtras();
+       /** Bundle extras = getIntent().getExtras();
         if (extras!=null)
         {
             nombre_asignatura = extras.getString("nombre_asig");
             Toast.makeText(getBaseContext(), nombre_asignatura, Toast.LENGTH_SHORT).show();
 
-        }
+        }*/
         //Llamar a la función rellenarArrayList() para añadir al ListView todos los alumnos definidos en el
         //archivo --- Nombre de la asignatura pulsada --- + --- .txt ---.
         alumnos = this.rellenarArrayList();
@@ -97,7 +98,9 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // Cancelamos el cuadro de dialogo
+                Intent i = new Intent().setClass(ListaAlumnos.this,ListaAsignaturas.class);
                 dialog.cancel();
+                startActivity(i);
             }
 
         });
@@ -442,7 +445,7 @@ public class ListaAlumnos extends ListActivity implements OnClickListener{
                     //En necesario añadir "/" para completar la ruta a la carpeta ya que getAbsolutePath devuelve la ruta sin /.
                     Bitmap image = BitmapFactory.decodeFile(carpeta.getAbsolutePath() + "/" + lista_alumnos.get(i).getDNI() + ".jpg");
                     Bitmap resized = Bitmap.createScaledBitmap(image,(int)(image.getWidth()*0.3), (int)(image.getHeight()*0.3),true);
-                    Toast.makeText(getApplicationContext(),carpeta.getAbsolutePath() + "/" + lista_alumnos.get(i).getDNI(),Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(getApplicationContext(),carpeta.getAbsolutePath() + "/" + lista_alumnos.get(i).getDNI(),Toast.LENGTH_LONG).show();
                     lista_alumnos.get(i).setFoto(resized);
                 }
             }
